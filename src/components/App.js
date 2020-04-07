@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import youtube from "../apis/youtube";
 import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 const KEY = "AIzaSyBCHusKVj2eeJWklEMtrlX8prtKk5eqseQ";
 class App extends React.Component {
@@ -22,7 +23,7 @@ class App extends React.Component {
   };
 
   onVideoSelect = video => {
-    console.log("From the App!", video);
+    this.setState({ selectedVideo: video });
   };
 
   render() {
@@ -32,6 +33,7 @@ class App extends React.Component {
           Typical convention is to match it to the callback function name.
           In this case that is "onTermSubmit" */}
         <SearchBar onFormSubmit={this.onTermSubmit} />
+        <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={this.onVideoSelect}
           videos={this.state.videos}
